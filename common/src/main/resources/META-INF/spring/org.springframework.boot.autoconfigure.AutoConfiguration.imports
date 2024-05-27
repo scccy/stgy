@@ -1,0 +1,13 @@
+# 自动导包
+# 写入class 类
+# 替换fastjson2
+com.scccy.config.MyBatisPlusConfig
+#com.scccy.config.RedisConfiguration
+com.scccy.config.WebMvcConfig
+com.scccy.config.MpMetaObjectHandler
+
+
+com.scccy.handlerExption.ControllerExceptionHandler
+com.scccy.handlerExption.GlobalExceptionHandler
+com.scccy.handlerExption.ServiceExceptionHandler
+
