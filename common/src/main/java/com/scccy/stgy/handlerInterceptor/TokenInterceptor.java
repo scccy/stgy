@@ -1,4 +1,4 @@
-package com.scccy.handlerInterceptor;
+package com.scccy.stgy.handlerInterceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

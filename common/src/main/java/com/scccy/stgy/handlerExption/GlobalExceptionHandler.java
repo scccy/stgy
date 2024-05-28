@@ -1,7 +1,7 @@
-package com.scccy.handlerExption;
+package com.scccy.stgy.handlerExption;
 
 
-import com.scccy.pojo.ResultData;
+import com.scccy.stgy.pojo.ResultData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,11 @@
-package com.scccy.config;
+package com.scccy.stgy.config;
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
-import com.scccy.handlerInterceptor.TokenInterceptor;
+import com.scccy.stgy.handlerInterceptor.TokenInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.charset.StandardCharsets;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,30 +45,35 @@ public class WebMvcConfig  implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        //自定义配置...
 
+
+        // 自定义配置
         FastJsonConfig config = new FastJsonConfig();
-
-        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
-
         config.setJSONB(true);
-        config.setReaderFeatures(JSONReader.Feature.FieldBased,
+        config.setReaderFeatures(
+                JSONReader.Feature.FieldBased,
                 JSONReader.Feature.SupportArrayToBean,
-//                驼峰转换
                 JSONReader.Feature.SupportSmartMatch
         );
+
         config.setWriterFeatures(
                 JSONWriter.Feature.PrettyFormat,
                 JSONWriter.Feature.BrowserCompatible,
                 JSONWriter.Feature.WriteMapNullValue
-
         );
 
+        // 设置东八区时间格式
+        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
+//        JSON.configReaderZoneId(ZoneId.of("Asia/Shanghai"));
+//        JSON.configWriterZoneId(ZoneId.of("Asia/Shanghai"));
         converter.setFastJsonConfig(config);
         converter.setDefaultCharset(StandardCharsets.UTF_8);
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+
         converters.add(0, converter);
     }
+
+
 }
 
 

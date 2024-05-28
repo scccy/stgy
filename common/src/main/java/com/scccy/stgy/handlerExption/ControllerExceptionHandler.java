@@ -1,4 +1,4 @@
-package com.scccy.handlerExption;
+package com.scccy.stgy.handlerExption;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.scccy.pojo.ResultData;
+import com.scccy.stgy.pojo.ResultData;
 
 import java.util.HashMap;
 import java.util.Map;

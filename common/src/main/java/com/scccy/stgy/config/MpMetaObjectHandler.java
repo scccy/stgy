@@ -1,4 +1,4 @@
-package com.scccy.config;
+package com.scccy.stgy.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

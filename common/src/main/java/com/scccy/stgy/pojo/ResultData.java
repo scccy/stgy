@@ -1,4 +1,4 @@
-package com.scccy.pojo;
+package com.scccy.stgy.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,8 @@ public class ResultData {
     public static ResultData ok() {
         ResultData resultData = new ResultData();
         resultData.setCode(200);
-        resultData.setMessage("SUSSES");
+        resultData.setMessage("");
+        resultData.setOk(true);
         return resultData;
     }
 
@@ -26,7 +27,8 @@ public class ResultData {
     public static ResultData fail() {
         ResultData resultData = new ResultData();
         resultData.setCode(500);
-        resultData.setMessage("FAIL");
+        resultData.setMessage("");
+        resultData.setOk(false);
         return resultData;
     }
 

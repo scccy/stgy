@@ -1,4 +1,4 @@
-package com.scccy.config;
+package com.scccy.stgy.config;
 
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
