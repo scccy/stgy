@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.scccy.stgy.mapper.ApartmentFacilityMapper">
-  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.ApartmentFacility">
+<mapper namespace="com.scccy.stgy.model.mapper.ApartmentFacilityMapper">
+  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.domain.ApartmentFacility">
     <!--@mbg.generated-->
     <!--@Table apartment_facility-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -60,7 +60,7 @@
         #{item.updateTime,jdbcType=TIMESTAMP}, #{item.isDeleted,jdbcType=TINYINT})
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.ApartmentFacility" useGeneratedKeys="true">
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.ApartmentFacility" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into apartment_facility
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -96,7 +96,7 @@
       is_deleted = #{isDeleted,jdbcType=TINYINT},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.ApartmentFacility" useGeneratedKeys="true">
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.ApartmentFacility" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into apartment_facility
     <trim prefix="(" suffix=")" suffixOverrides=",">

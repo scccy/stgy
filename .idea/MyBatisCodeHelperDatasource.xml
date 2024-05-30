@@ -7,12 +7,9 @@
         <option name="batchInsert" value="true" />
         <option name="controllerFolderPath" value="$PROJECT_DIR$/web/web-admin/src/main/java" />
         <option name="controllerTemplateString" value="&#10;#* @vtlvariable name=&quot;tableName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;entityPackageName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;entityClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;servicePackageName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;serviceInterfacePackage&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;serviceClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;serviceInterfaceClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;mapperPackageName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;mapperClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;controllerPackage&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;tableRemark&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;myDate&quot; type=&quot;java.util.Date&quot; *#&#10;#* @vtlvariable name=&quot;simpleDateFormat&quot; type=&quot;java.text.SimpleDateFormat&quot; *#&#10;package $!{controllerPackage};&#10;import $!{entityPackageName}.$!{entityClassName};&#10;###set($realServiceName = $!{serviceClassName}+'Impl')&#10;import $!{servicePackageName}.$!{serviceClassName};&#10;import org.springframework.web.bind.annotation.*;&#10;&#10;#set($serviceFirstLower = $!{serviceClassName.substring(0,1).toLowerCase()}+$!{serviceClassName.substring(1,$!{serviceClassName.length()})})&#10;import javax.annotation.Resource;&#10;&#10;/**&#10;* $!{tableRemark}($!{tableName})表控制层&#10;*&#10;* @author xxxxx&#10;*/&#10;@RestController&#10;@RequestMapping(&quot;/$!{tableName}&quot;)&#10;public class $!{entityClassName}Controller {&#10;/**&#10;* 服务对象&#10;*/&#10;@Resource&#10;private $!{serviceClassName} $!{serviceFirstLower};&#10;&#10;/**&#10;* 通过主键查询单条数据&#10;*&#10;* @param id 主键&#10;* @return 单条数据&#10;*/&#10;@GetMapping(&quot;selectOne&quot;)&#10;public $!{entityClassName} selectOne(Integer id) {&#10;return $!{serviceFirstLower}.selectByPrimaryKey(id);&#10;}&#10;&#10;}" />
-        <option name="deleteByPrimayKeyEnabled" value="false" />
         <option name="generateService" value="true" />
         <option name="generateServiceInterface" value="true" />
-        <option name="insertMethodEnabled" value="false" />
         <option name="insertOnDuplicateKey" value="true" />
-        <option name="insertSelectiveMethodEnabled" value="false" />
         <option name="javaControllerPackage" value="com.scccy.stgy.admin.controller" />
         <option name="javaMapperPackage" value="com.scccy.stgy.mapper" />
         <option name="javaMapperPath" value="$PROJECT_DIR$/model/src/main/java" />
@@ -44,26 +41,161 @@
           </map>
         </option>
         <option name="mybatisPlusIdType" value="ASSIGN_ID" />
-        <option name="selectByPrimaryKeyEnabled" value="false" />
+        <option name="removeIsPrefix" value="true" />
         <option name="tableGenerateConfigs">
           <map>
             <entry key="lease:apartment_facility">
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="ApartmentFacility" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
-                  <option name="sequenceColumn" value="" />
-                  <option name="sequenceId" value="" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:apartment_fee_value">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="ApartmentFeeValue" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:apartment_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="ApartmentInfo" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:apartment_label">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="ApartmentLabel" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:attr_key">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="AttrKey" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:attr_value">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="AttrValue" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:browsing_history">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="BrowsingHistory" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:city_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="CityInfo" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:district_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="DistrictInfo" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:facility_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="FacilityInfo" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:fee_key">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="FeeKey" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:fee_value">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="FeeValue" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -72,19 +204,37 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="GraphInfo" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
-                  <option name="sequenceColumn" value="" />
-                  <option name="sequenceId" value="" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:label_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="LabelInfo" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:lease_agreement">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="LeaseAgreement" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -97,8 +247,6 @@
                   <option name="insertOnDuplicateKey" value="true" />
                   <option name="javaModelName" value="LeaseTerm" />
                   <option name="moduleName" value="model" />
-                  <option name="sequenceColumn" value="" />
-                  <option name="sequenceId" value="" />
                   <option name="updateBatch" value="true" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
@@ -112,8 +260,19 @@
                   <option name="insertOnDuplicateKey" value="true" />
                   <option name="javaModelName" value="PaymentType" />
                   <option name="moduleName" value="model" />
-                  <option name="sequenceColumn" value="" />
-                  <option name="sequenceId" value="" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:province_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="ProvinceInfo" />
+                  <option name="moduleName" value="model" />
                   <option name="updateBatch" value="true" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
@@ -123,17 +282,11 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="RoomAttrValue" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -142,17 +295,11 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="RoomFacility" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -161,17 +308,11 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="RoomInfo" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -180,17 +321,11 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="RoomLabel" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -199,17 +334,11 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="RoomLeaseTerm" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -218,17 +347,63 @@
               <value>
                 <TableGenerateConfig>
                   <option name="batchInsert" value="true" />
-                  <option name="deleteByPrimayKeyEnabled" value="false" />
                   <option name="generatedKey" value="id" />
-                  <option name="insertMethodEnabled" value="false" />
                   <option name="insertOnDuplicateKey" value="true" />
-                  <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="RoomPaymentType" />
                   <option name="moduleName" value="model" />
-                  <option name="selectByPrimaryKeyEnabled" value="false" />
                   <option name="updateBatch" value="true" />
-                  <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-                  <option name="updateByPrimaykeyEnabled" value="false" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:system_post">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="SystemPost" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:system_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="SystemUser" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:user_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="UserInfo" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="lease:view_appointment">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="insertOnDuplicateKey" value="true" />
+                  <option name="javaModelName" value="ViewAppointment" />
+                  <option name="moduleName" value="model" />
+                  <option name="updateBatch" value="true" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -236,8 +411,6 @@
           </map>
         </option>
         <option name="updateBatch" value="true" />
-        <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
-        <option name="updateByPrimaykeyEnabled" value="false" />
         <option name="useOpenApi" value="true" />
         <option name="userMybatisPlus" value="true" />
         <option name="xmlMapperPackage" value="mapper" />

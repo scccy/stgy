@@ -1,15 +1,15 @@
 package com.scccy.stgy.admin.service;
 
+import com.scccy.stgy.admin.service.impl.RoomPaymentTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.scccy.stgy.model.RoomPaymentType;
-import com.scccy.stgy.mapper.RoomPaymentTypeMapper;
-import java.util.List;
-import com.scccy.stgy.admin.service.impl.RoomPaymentTypeService;
+import com.scccy.stgy.model.domain.RoomPaymentType;
+import com.scccy.stgy.model.mapper.RoomPaymentTypeMapper;
+
 @Service
-public class RoomPaymentTypeServiceImpl extends ServiceImpl<RoomPaymentTypeMapper, RoomPaymentType> implements RoomPaymentTypeService{
+public class RoomPaymentTypeServiceImpl extends ServiceImpl<RoomPaymentTypeMapper, RoomPaymentType> implements RoomPaymentTypeService {
 
     @Override
     public int updateBatch(List<RoomPaymentType> list) {

@@ -1,8 +1,10 @@
 package com.scccy.stgy.admin.service.impl;
 
 import java.util.List;
-import com.scccy.stgy.model.RoomAttrValue;
+import com.scccy.stgy.model.domain.RoomAttrValue;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.scccy.stgy.model.vo.AttrValueVo;
+
 public interface RoomAttrValueService extends IService<RoomAttrValue>{
 
 
@@ -14,4 +16,5 @@ public interface RoomAttrValueService extends IService<RoomAttrValue>{
 
     int insertOrUpdateSelective(RoomAttrValue record);
 
+    List<AttrValueVo> getAttrValueVos(Integer id);
 }

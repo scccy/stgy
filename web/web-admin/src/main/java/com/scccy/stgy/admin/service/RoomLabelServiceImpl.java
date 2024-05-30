@@ -1,15 +1,15 @@
 package com.scccy.stgy.admin.service;
 
+import com.scccy.stgy.admin.service.impl.RoomLabelService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import java.util.List;
-import com.scccy.stgy.mapper.RoomLabelMapper;
-import com.scccy.stgy.model.RoomLabel;
-import com.scccy.stgy.admin.service.impl.RoomLabelService;
+import com.scccy.stgy.model.mapper.RoomLabelMapper;
+import com.scccy.stgy.model.domain.RoomLabel;
+
 @Service
-public class RoomLabelServiceImpl extends ServiceImpl<RoomLabelMapper, RoomLabel> implements RoomLabelService{
+public class RoomLabelServiceImpl extends ServiceImpl<RoomLabelMapper, RoomLabel> implements RoomLabelService {
 
     @Override
     public int updateBatch(List<RoomLabel> list) {

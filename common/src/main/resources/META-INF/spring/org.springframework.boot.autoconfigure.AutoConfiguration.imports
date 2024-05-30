@@ -1,14 +1,14 @@
 # 自动导包
 # 写入class 类
 # 替换fastjson2
-com.scccy.stgy.config.MyBatisPlusConfig
+com.scccy.stgy.common.config.MyBatisPlusConfig
 #com.scccy.config.RedisConfiguration
-com.scccy.stgy.config.WebMvcConfig
-com.scccy.stgy.config.MpMetaObjectHandler
-com.scccy.stgy.config.Knife4jConfiguration
+com.scccy.stgy.common.config.WebMvcConfig
+com.scccy.stgy.common.config.MpMetaObjectHandler
+com.scccy.stgy.common.config.Knife4jConfiguration
 
 
-com.scccy.stgy.handlerExption.ControllerExceptionHandler
-com.scccy.stgy.handlerExption.GlobalExceptionHandler
-com.scccy.stgy.handlerExption.ServiceExceptionHandler
+com.scccy.stgy.common.handlerExption.ControllerExceptionHandler
+com.scccy.stgy.common.handlerExption.GlobalExceptionHandler
+com.scccy.stgy.common.handlerExption.ServiceExceptionHandler
 

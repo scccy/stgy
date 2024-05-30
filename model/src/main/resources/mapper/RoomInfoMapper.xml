@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.scccy.stgy.mapper.RoomInfoMapper">
-  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.RoomInfo">
+<mapper namespace="com.scccy.stgy.model.mapper.RoomInfoMapper">
+  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.domain.RoomInfo">
     <!--@mbg.generated-->
     <!--@Table room_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
     <result column="rent" jdbcType="DECIMAL" property="rent" />
     <result column="apartment_id" jdbcType="BIGINT" property="apartmentId" />
-    <result column="is_release" jdbcType="TINYINT" property="isRelease" />
+    <result column="is_release" jdbcType="TINYINT" property="release" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="is_deleted" jdbcType="TINYINT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -38,7 +38,7 @@
       </trim>
       <trim prefix="is_release = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.isRelease,jdbcType=TINYINT}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.release,jdbcType=TINYINT}
         </foreach>
       </trim>
       <trim prefix="create_time = case" suffix="end,">
@@ -53,7 +53,7 @@
       </trim>
       <trim prefix="is_deleted = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.isDeleted,jdbcType=TINYINT}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=TINYINT}
         </foreach>
       </trim>
     </trim>
@@ -70,11 +70,11 @@
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.roomNumber,jdbcType=VARCHAR}, #{item.rent,jdbcType=DECIMAL}, #{item.apartmentId,jdbcType=BIGINT}, 
-        #{item.isRelease,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
-        #{item.isDeleted,jdbcType=TINYINT})
+        #{item.release,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        #{item.deleted,jdbcType=TINYINT})
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.RoomInfo" useGeneratedKeys="true">
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.RoomInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into room_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -97,10 +97,10 @@
       #{roomNumber,jdbcType=VARCHAR},
       #{rent,jdbcType=DECIMAL},
       #{apartmentId,jdbcType=BIGINT},
-      #{isRelease,jdbcType=TINYINT},
+      #{release,jdbcType=TINYINT},
       #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP},
-      #{isDeleted,jdbcType=TINYINT},
+      #{deleted,jdbcType=TINYINT},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -110,13 +110,13 @@
       room_number = #{roomNumber,jdbcType=VARCHAR},
       rent = #{rent,jdbcType=DECIMAL},
       apartment_id = #{apartmentId,jdbcType=BIGINT},
-      is_release = #{isRelease,jdbcType=TINYINT},
+      is_release = #{release,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      is_deleted = #{deleted,jdbcType=TINYINT},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.RoomInfo" useGeneratedKeys="true">
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.RoomInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into room_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -132,7 +132,7 @@
       <if test="apartmentId != null">
         apartment_id,
       </if>
-      <if test="isRelease != null">
+      <if test="release != null">
         is_release,
       </if>
       <if test="createTime != null">
@@ -141,7 +141,7 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         is_deleted,
       </if>
     </trim>
@@ -159,8 +159,8 @@
       <if test="apartmentId != null">
         #{apartmentId,jdbcType=BIGINT},
       </if>
-      <if test="isRelease != null">
-        #{isRelease,jdbcType=TINYINT},
+      <if test="release != null">
+        #{release,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -168,8 +168,8 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
     on duplicate key update 
@@ -186,8 +186,8 @@
       <if test="apartmentId != null">
         apartment_id = #{apartmentId,jdbcType=BIGINT},
       </if>
-      <if test="isRelease != null">
-        is_release = #{isRelease,jdbcType=TINYINT},
+      <if test="release != null">
+        is_release = #{release,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -195,9 +195,69 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
+
+  <resultMap autoMapping="true" id="getRoomPageItemMap" type="com.scccy.stgy.model.dto.RoomPageItemDto">
+    <id column="id" property="id" />
+    <association autoMapping="true" javaType="com.scccy.stgy.model.domain.ApartmentInfo" property="apartmentInfo">
+      <id column="apart_id" property="id" />
+      <result column="apart_is_release" property="release" />
+    </association>
+  </resultMap>
+  <select id="getRoomPageItem" resultMap="getRoomPageItemMap">
+      select ri.id,
+             ri.room_number,
+             ri.rent,
+             ri.apartment_id,
+             ri.is_release,
+             la.room_id is not null is_check_in,
+             la.lease_end_date,
+             ai.id                  apart_id,
+             ai.name,
+             ai.introduction,
+             ai.district_id,
+             ai.district_name,
+             ai.city_id,
+             ai.city_name,
+             ai.province_id,
+             ai.province_name,
+             ai.address_detail,
+             ai.latitude,
+             ai.longitude,
+             ai.phone,
+             ai.is_release          apart_is_release
+      from room_info ri
+               left join lease_agreement la
+                         on ri.id = la.room_id
+                             and la.is_deleted = 0
+                             and la.status in (2, 5)
+               left join apartment_info ai
+                         on ri.apartment_id = ai.id
+                             and ai.is_deleted = 0
+      <where>
+          ri.is_deleted = 0
+          <if test="provinceId != null">
+              AND ai.province_id = #{provinceId}
+          </if>
+          <if test="cityId != null">
+              AND ai.city_id = #{cityId}
+          </if>
+          <if test="districtId != null">
+              AND ai.district_id = #{districtId}
+          </if>
+          <if test="apartmentId != null">
+              AND ri.apartment_id = #{apartmentId}
+          </if>
+      </where>
+  </select>
+  <resultMap autoMapping="true" id="RoomGetDetailByIdDtoMap" type="com.scccy.stgy.model.dto.RoomGetDetailByIdDto">
+
+  </resultMap>
+  <select id="getDetailById" resultMap="RoomGetDetailByIdDtoMap">
+
+  </select>
 </mapper>

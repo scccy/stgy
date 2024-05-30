@@ -16,7 +16,7 @@
         <module>web-admin</module>
     </modules>
     <dependencies>
-        <!--        web模块 都需要使用 model 和common-->
+        <!--        web模块 都需要使用 domain 和common-->
         <dependency>
             <groupId>com.scccy</groupId>
             <artifactId>common</artifactId>

@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@MapperScan("com.scccy.stgy.mapper")
+@MapperScan("com.scccy.stgy.model.mapper")
 @SpringBootApplication
 public class WebAdminApplication {
     public static void main(String[] args) {

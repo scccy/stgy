@@ -1,15 +1,15 @@
 package com.scccy.stgy.admin.service;
 
+import com.scccy.stgy.admin.service.impl.RoomFacilityService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import java.util.List;
-import com.scccy.stgy.model.RoomFacility;
-import com.scccy.stgy.mapper.RoomFacilityMapper;
-import com.scccy.stgy.admin.service.impl.RoomFacilityService;
+import com.scccy.stgy.model.domain.RoomFacility;
+import com.scccy.stgy.model.mapper.RoomFacilityMapper;
+
 @Service
-public class RoomFacilityServiceImpl extends ServiceImpl<RoomFacilityMapper, RoomFacility> implements RoomFacilityService{
+public class RoomFacilityServiceImpl extends ServiceImpl<RoomFacilityMapper, RoomFacility> implements RoomFacilityService {
 
     @Override
     public int updateBatch(List<RoomFacility> list) {

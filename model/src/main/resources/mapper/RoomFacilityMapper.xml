@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.scccy.stgy.mapper.RoomFacilityMapper">
-  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.RoomFacility">
+<mapper namespace="com.scccy.stgy.model.mapper.RoomFacilityMapper">
+  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.domain.RoomFacility">
     <!--@mbg.generated-->
     <!--@Table room_facility-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -9,7 +9,7 @@
     <result column="facility_id" jdbcType="BIGINT" property="facilityId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="is_deleted" jdbcType="TINYINT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -41,7 +41,7 @@
       </trim>
       <trim prefix="is_deleted = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.isDeleted,jdbcType=TINYINT}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=TINYINT}
         </foreach>
       </trim>
     </trim>
@@ -57,10 +57,10 @@
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.roomId,jdbcType=BIGINT}, #{item.facilityId,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, 
-        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.isDeleted,jdbcType=TINYINT})
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.deleted,jdbcType=TINYINT})
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.RoomFacility" useGeneratedKeys="true">
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.RoomFacility" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into room_facility
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -82,7 +82,7 @@
       #{facilityId,jdbcType=BIGINT},
       #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP},
-      #{isDeleted,jdbcType=TINYINT},
+      #{deleted,jdbcType=TINYINT},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -93,10 +93,10 @@
       facility_id = #{facilityId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      is_deleted = #{deleted,jdbcType=TINYINT},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.RoomFacility" useGeneratedKeys="true">
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.RoomFacility" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into room_facility
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -115,7 +115,7 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         is_deleted,
       </if>
     </trim>
@@ -136,8 +136,8 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
     on duplicate key update 
@@ -157,8 +157,8 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>

@@ -1,8 +1,8 @@
 package com.scccy.stgy.admin.controller;
 
 import com.scccy.stgy.admin.service.impl.LeaseTermService;
-import com.scccy.stgy.model.LeaseTerm;
-import com.scccy.stgy.pojo.ResultData;
+import com.scccy.stgy.model.domain.LeaseTerm;
+import com.scccy.stgy.common.pojo.ResultData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

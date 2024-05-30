@@ -1,7 +1,7 @@
 package com.scccy.stgy.admin.service.impl;
 
 import java.util.List;
-import com.scccy.stgy.model.RoomLabel;
+import com.scccy.stgy.model.domain.RoomLabel;
 import com.baomidou.mybatisplus.extension.service.IService;
 public interface RoomLabelService extends IService<RoomLabel>{
 

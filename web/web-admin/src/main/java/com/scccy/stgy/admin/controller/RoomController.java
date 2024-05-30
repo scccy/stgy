@@ -1,13 +1,19 @@
 package com.scccy.stgy.admin.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scccy.stgy.admin.service.impl.RoomService;
-import com.scccy.stgy.model.RoomInfo;
-import com.scccy.stgy.pojo.ResultData;
-import com.scccy.stgy.vo.SaveOrUpdateVo;
+import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
+import com.scccy.stgy.model.dto.RoomPageItemDto;
+import com.scccy.stgy.model.domain.RoomInfo;
+import com.scccy.stgy.common.pojo.ResultData;
+import com.scccy.stgy.model.vo.SaveOrUpdateVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/room")
@@ -18,7 +24,7 @@ public class RoomController {
     RoomService roomService;
 
     @Operation(summary = "根据id修改房间发布状态")
-    @PostMapping("updateReleaseStatusById")
+    @PostMapping("/updateReleaseStatusById")
     public ResultData updateReleaseStatusById(@RequestBody RoomInfo info   ){
         boolean b = roomService.updateReleaseStatusById(info);
         return b?ResultData.ok():ResultData.fail();
@@ -32,10 +38,33 @@ public class RoomController {
     }
 
 
-    @Operation("根据条件分页查询房间列表")
+    @Operation(summary = "根据条件分页查询房间列表")
     @GetMapping("/pageItem")
-    public  ResultData pageItem(){
+    public ResultData pageItem(
+            @RequestParam("current") Integer current,
+            @RequestParam("size") Integer size,
+            @RequestParam(value = "provinceId", required = false) Long provinceId,
+            @RequestParam(value = "cityId", required = false) Long cityId,
+            @RequestParam(value = "districtId", required = false) Long districtId,
+            @RequestParam(value = "apartmentId", required = false) Long apartmentId) {
 
-        return null;
+        // 根据参数查询房间列表，并返回分页结果
+        // 这里需要根据具体业务逻辑完成查询操作
+        IPage<RoomPageItemDto> roomPageItemDtoPage = new Page<>(current,size);
+        IPage<RoomPageItemDto> data = roomService.pageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
+        return ResultData.ok().setData(data); // 返回查询结果
     }
+    @Operation(summary = "根据公寓id查询房间列表")
+    @GetMapping("/listBasicByApartmentId")
+    public ResultData listBasicByApartmentId(Integer id){
+        List<RoomInfo> roomInfos=roomService.listBasicByApartmentId(id);
+        return ResultData.ok().setData(roomInfos);
+    }
+    @Operation(summary = "根据id获取房间详细信息")
+    @GetMapping("/getDetailById")
+    public ResultData getDetailById(Integer id){
+        RoomGetDetailByIdDto roomDetailDto =roomService.getDetailById(id);
+        return ResultData.ok().setData(roomDetailDto);
+    }
+
 }

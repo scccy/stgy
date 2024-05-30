@@ -1,6 +1,6 @@
 package com.scccy.stgy.admin.service.impl;
 
-import com.scccy.stgy.model.RoomPaymentType;
+import com.scccy.stgy.model.domain.RoomPaymentType;
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.IService;
 public interface RoomPaymentTypeService extends IService<RoomPaymentType>{

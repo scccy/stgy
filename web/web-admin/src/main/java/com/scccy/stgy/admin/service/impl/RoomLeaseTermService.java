@@ -1,7 +1,7 @@
 package com.scccy.stgy.admin.service.impl;
 
 import java.util.List;
-import com.scccy.stgy.model.RoomLeaseTerm;
+import com.scccy.stgy.model.domain.RoomLeaseTerm;
 import com.baomidou.mybatisplus.extension.service.IService;
 public interface RoomLeaseTermService extends IService<RoomLeaseTerm>{
 
