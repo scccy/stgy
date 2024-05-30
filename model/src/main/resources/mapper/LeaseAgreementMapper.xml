@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scccy.stgy.model.mapper.LeaseAgreementMapper">
+  <resultMap id="BaseResultMap" type="com.scccy.stgy.model.domain.LeaseAgreement">
+    <!--@mbg.generated-->
+    <!--@Table lease_agreement-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identification_number" jdbcType="VARCHAR" property="identificationNumber" />
+    <result column="apartment_id" jdbcType="BIGINT" property="apartmentId" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="lease_start_date" jdbcType="DATE" property="leaseStartDate" />
+    <result column="lease_end_date" jdbcType="DATE" property="leaseEndDate" />
+    <result column="lease_term_id" jdbcType="BIGINT" property="leaseTermId" />
+    <result column="rent" jdbcType="DECIMAL" property="rent" />
+    <result column="deposit" jdbcType="DECIMAL" property="deposit" />
+    <result column="payment_type_id" jdbcType="BIGINT" property="paymentTypeId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="source_type" jdbcType="TINYINT" property="sourceType" />
+    <result column="additional_info" jdbcType="VARCHAR" property="additionalInfo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, phone, `name`, identification_number, apartment_id, room_id, lease_start_date, 
+    lease_end_date, lease_term_id, rent, deposit, payment_type_id, `status`, source_type, 
+    additional_info, create_time, update_time, is_deleted
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update lease_agreement
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.phone,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="identification_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.identificationNumber,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="apartment_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.apartmentId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="room_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.roomId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="lease_start_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.leaseStartDate,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="lease_end_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.leaseEndDate,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="lease_term_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.leaseTermId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="rent = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.rent,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="deposit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deposit,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="payment_type_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.paymentTypeId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="source_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sourceType,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="additional_info = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.additionalInfo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into lease_agreement
+    (phone, `name`, identification_number, apartment_id, room_id, lease_start_date, lease_end_date, 
+      lease_term_id, rent, deposit, payment_type_id, `status`, source_type, additional_info, 
+      create_time, update_time, is_deleted)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.phone,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.identificationNumber,jdbcType=VARCHAR}, 
+        #{item.apartmentId,jdbcType=BIGINT}, #{item.roomId,jdbcType=BIGINT}, #{item.leaseStartDate,jdbcType=DATE}, 
+        #{item.leaseEndDate,jdbcType=DATE}, #{item.leaseTermId,jdbcType=BIGINT}, #{item.rent,jdbcType=DECIMAL}, 
+        #{item.deposit,jdbcType=DECIMAL}, #{item.paymentTypeId,jdbcType=BIGINT}, #{item.status,jdbcType=TINYINT}, 
+        #{item.sourceType,jdbcType=TINYINT}, #{item.additionalInfo,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.deleted,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.LeaseAgreement" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into lease_agreement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      phone,
+      `name`,
+      identification_number,
+      apartment_id,
+      room_id,
+      lease_start_date,
+      lease_end_date,
+      lease_term_id,
+      rent,
+      deposit,
+      payment_type_id,
+      `status`,
+      source_type,
+      additional_info,
+      create_time,
+      update_time,
+      is_deleted,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{phone,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{identificationNumber,jdbcType=VARCHAR},
+      #{apartmentId,jdbcType=BIGINT},
+      #{roomId,jdbcType=BIGINT},
+      #{leaseStartDate,jdbcType=DATE},
+      #{leaseEndDate,jdbcType=DATE},
+      #{leaseTermId,jdbcType=BIGINT},
+      #{rent,jdbcType=DECIMAL},
+      #{deposit,jdbcType=DECIMAL},
+      #{paymentTypeId,jdbcType=BIGINT},
+      #{status,jdbcType=TINYINT},
+      #{sourceType,jdbcType=TINYINT},
+      #{additionalInfo,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=TINYINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      phone = #{phone,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      identification_number = #{identificationNumber,jdbcType=VARCHAR},
+      apartment_id = #{apartmentId,jdbcType=BIGINT},
+      room_id = #{roomId,jdbcType=BIGINT},
+      lease_start_date = #{leaseStartDate,jdbcType=DATE},
+      lease_end_date = #{leaseEndDate,jdbcType=DATE},
+      lease_term_id = #{leaseTermId,jdbcType=BIGINT},
+      rent = #{rent,jdbcType=DECIMAL},
+      deposit = #{deposit,jdbcType=DECIMAL},
+      payment_type_id = #{paymentTypeId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=TINYINT},
+      source_type = #{sourceType,jdbcType=TINYINT},
+      additional_info = #{additionalInfo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{deleted,jdbcType=TINYINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.LeaseAgreement" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into lease_agreement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="identificationNumber != null">
+        identification_number,
+      </if>
+      <if test="apartmentId != null">
+        apartment_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="leaseStartDate != null">
+        lease_start_date,
+      </if>
+      <if test="leaseEndDate != null">
+        lease_end_date,
+      </if>
+      <if test="leaseTermId != null">
+        lease_term_id,
+      </if>
+      <if test="rent != null">
+        rent,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="paymentTypeId != null">
+        payment_type_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+      <if test="additionalInfo != null">
+        additional_info,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationNumber != null">
+        #{identificationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentId != null">
+        #{apartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="leaseStartDate != null">
+        #{leaseStartDate,jdbcType=DATE},
+      </if>
+      <if test="leaseEndDate != null">
+        #{leaseEndDate,jdbcType=DATE},
+      </if>
+      <if test="leaseTermId != null">
+        #{leaseTermId,jdbcType=BIGINT},
+      </if>
+      <if test="rent != null">
+        #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentTypeId != null">
+        #{paymentTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="additionalInfo != null">
+        #{additionalInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationNumber != null">
+        identification_number = #{identificationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentId != null">
+        apartment_id = #{apartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="leaseStartDate != null">
+        lease_start_date = #{leaseStartDate,jdbcType=DATE},
+      </if>
+      <if test="leaseEndDate != null">
+        lease_end_date = #{leaseEndDate,jdbcType=DATE},
+      </if>
+      <if test="leaseTermId != null">
+        lease_term_id = #{leaseTermId,jdbcType=BIGINT},
+      </if>
+      <if test="rent != null">
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentTypeId != null">
+        payment_type_id = #{paymentTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="sourceType != null">
+        source_type = #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="additionalInfo != null">
+        additional_info = #{additionalInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
