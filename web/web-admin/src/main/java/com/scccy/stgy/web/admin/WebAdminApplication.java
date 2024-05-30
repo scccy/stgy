@@ -1,4 +1,4 @@
-package com.scccy.stgy.admin;
+package com.scccy.stgy.web.admin;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,16 +1,18 @@
-package com.scccy.stgy.admin.controller;
+package com.scccy.stgy.web.admin.controller;
+
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.scccy.stgy.admin.service.impl.RoomService;
+import com.scccy.stgy.common.pojo.ResultData;
+import com.scccy.stgy.model.domain.RoomInfo;
 import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
 import com.scccy.stgy.model.dto.RoomPageItemDto;
-import com.scccy.stgy.model.domain.RoomInfo;
-import com.scccy.stgy.common.pojo.ResultData;
 import com.scccy.stgy.model.vo.SaveOrUpdateVo;
+
+import com.scccy.stgy.web.admin.service.RoomService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +22,7 @@ import java.util.List;
 @Tag(name = "公寓信息管理")
 public class RoomController {
 
-    @Resource
+    @Autowired
     RoomService roomService;
 
     @Operation(summary = "根据id修改房间发布状态")

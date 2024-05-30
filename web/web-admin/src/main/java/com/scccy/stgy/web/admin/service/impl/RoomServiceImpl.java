@@ -1,15 +1,16 @@
-package com.scccy.stgy.admin.service;
+package com.scccy.stgy.web.admin.service.impl;
+
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.scccy.stgy.admin.service.impl.*;
-
+import com.scccy.stgy.model.domain.*;
 import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
 import com.scccy.stgy.model.dto.RoomPageItemDto;
-import com.scccy.stgy.model.domain.*;
 import com.scccy.stgy.model.vo.AttrValueVo;
 import com.scccy.stgy.model.vo.SaveOrUpdateVo;
+import com.scccy.stgy.web.admin.service.*;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @Service
 public class RoomServiceImpl implements RoomService {
 
-    @Resource
+    @Autowired
     RoomInfoService roomInfoService;
     @Resource
     GraphInfoService graphInfoService;

@@ -1,8 +1,8 @@
-package com.scccy.stgy.admin.controller;
+package com.scccy.stgy.web.admin.controller;
 
-import com.scccy.stgy.admin.service.impl.LeaseTermService;
-import com.scccy.stgy.model.domain.LeaseTerm;
 import com.scccy.stgy.common.pojo.ResultData;
+import com.scccy.stgy.model.domain.LeaseTerm;
+import com.scccy.stgy.web.admin.service.LeaseTermService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -19,7 +19,7 @@ public class TermController {
     LeaseTermService leaseTermService;
     @Operation(summary = "保存或更新租期信息")
     @PostMapping("/saveOrUpdate")
-    public ResultData saveOrUpdate(@RequestBody  LeaseTerm leaseTerm) {
+    public ResultData saveOrUpdate(@RequestBody LeaseTerm leaseTerm) {
         boolean b = leaseTermService.saveOrUpdate(leaseTerm);
         return b?ResultData.ok():ResultData.fail();
     }

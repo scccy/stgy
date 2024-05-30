@@ -11,27 +11,27 @@
         <option name="generateServiceInterface" value="true" />
         <option name="insertOnDuplicateKey" value="true" />
         <option name="javaControllerPackage" value="com.scccy.stgy.admin.controller" />
-        <option name="javaMapperPackage" value="com.scccy.stgy.mapper" />
+        <option name="javaMapperPackage" value="com.scccy.stgy.model.mapper" />
         <option name="javaMapperPath" value="$PROJECT_DIR$/model/src/main/java" />
-        <option name="javaModelPackage" value="com.scccy.stgy.model" />
+        <option name="javaModelPackage" value="com.scccy.stgy.model.domain" />
         <option name="javaModelPath" value="$PROJECT_DIR$/model/src/main/java" />
         <option name="lastDatabaseCrudChooseModuleName" value="model" />
         <option name="lombokAllArgConstructor" value="true" />
         <option name="lombokDataAnnotation" value="true" />
         <option name="lombokNoArgsConstructor" value="true" />
-        <option name="modelSuperClass" value="com.scccy.stgy.model.BaseModel" />
+        <option name="modelSuperClass" value="com.scccy.stgy.model.domain.BaseModel" />
         <option name="moduleNameToPackageAndPathMap">
           <map>
             <entry key="model">
               <value>
                 <UserPackageAndPathInfoByModule>
-                  <option name="javaMapperPackage" value="com.scccy.stgy.mapper" />
+                  <option name="javaMapperPackage" value="com.scccy.stgy.model.mapper" />
                   <option name="javaMapperPath" value="$PROJECT_DIR$/model/src/main/java" />
-                  <option name="javaModelPacakge" value="com.scccy.stgy.model" />
+                  <option name="javaModelPacakge" value="com.scccy.stgy.model.domain" />
                   <option name="javaModelPath" value="$PROJECT_DIR$/model/src/main/java" />
-                  <option name="javaServiceInterfacePackage" value="com.scccy.stgy.admin.service.impl" />
+                  <option name="javaServiceInterfacePackage" value="com.scccy.stgy.web.admin.service" />
                   <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/web/web-admin/src/main/java" />
-                  <option name="javaServicePackage" value="com.scccy.stgy.admin.service" />
+                  <option name="javaServicePackage" value="com.scccy.stgy.web.admin.service.impl" />
                   <option name="javaServicePath" value="$PROJECT_DIR$/web/web-admin/src/main/java" />
                   <option name="xmlPackage" value="mapper" />
                   <option name="xmlPath" value="$PROJECT_DIR$/model/src/main/resources" />
