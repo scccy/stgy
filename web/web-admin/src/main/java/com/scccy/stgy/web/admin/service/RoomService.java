@@ -22,4 +22,6 @@ public interface RoomService {
     List<RoomInfo> listBasicByApartmentId(Integer id);
 
     RoomGetDetailByIdDto getDetailById(Integer id);
+
+    boolean removeById(Integer id);
 }

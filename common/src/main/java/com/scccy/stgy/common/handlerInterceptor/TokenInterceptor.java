@@ -10,14 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String token = request.getHeader("Authorization");
-        if (token == null || !token.startsWith("Bearer ")) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 设置响应状态码为401
-            response.getWriter().write("Unauthorized access");
-            return false; // 返回false，请求将被终止
-        }
-        // 此处可以添加更复杂的token验证逻辑，如解析和校验token
-        return true; // token存在，请求继续
+//        String token = request.getHeader("Authorization");
+//        if (token == null || !token.startsWith("Bearer ")) {
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 设置响应状态码为401
+//            response.getWriter().write("Unauthorized access");
+//            return false; // 返回false，请求将被终止
+//        }
+//        // 此处可以添加更复杂的token验证逻辑，如解析和校验token
+//        return true; // token存在，请求继续
+        return true;
     }
 
     @Override

@@ -69,4 +69,10 @@ public class RoomController {
         return ResultData.ok().setData(roomDetailDto);
     }
 
+    @Operation(summary = "根据id删除房间信息")
+    @DeleteMapping("/removeById")
+    public ResultData removeById(Integer id){
+        boolean b = roomService.removeById(id);
+        return b?ResultData.ok():ResultData.fail();
+    }
 }

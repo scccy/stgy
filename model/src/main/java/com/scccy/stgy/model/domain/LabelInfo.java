@@ -27,7 +27,7 @@ public class LabelInfo extends BaseModel implements Serializable {
      */
     @TableField(value = "`type`")
     @Schema(description = "类型（1:公寓标签,2:房间标签）")
-    private Byte type;
+    private Integer type;
 
     /**
      * 标签名称

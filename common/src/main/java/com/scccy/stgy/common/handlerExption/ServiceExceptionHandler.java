@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
 @Slf4j
-@RestControllerAdvice()
+//@RestControllerAdvice()
 public class ServiceExceptionHandler {
     // 处理自定义异常，通常用于业务逻辑错误，例如无效的用户操作等
     @ExceptionHandler(GlobalExceptionHandler.CustomException.class)

@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.sql.SQLException;
 
 @Slf4j
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptionHandler {
     //    针对数据库异常处理
-    @ExceptionHandler(DataAccessException.class)
-    public ResponseEntity<ResultData> handleSQLException(SQLException ex) {
-        String errorMessage = "Database error: SQL integrity constraint violation.";
-        log.error(errorMessage, ex);
-        return new ResponseEntity<>(ResultData.fail().setMessage(errorMessage).setData(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(DataAccessException.class)
+//    public ResponseEntity<ResultData> handleSQLException(SQLException ex) {
+//        String errorMessage = "Database error: SQL integrity constraint violation.";
+//        log.error(errorMessage, ex);
+//        return new ResponseEntity<>(ResultData.fail().setMessage(errorMessage).setData(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     // 处理所有未被前面特定异常处理器捕获的异常
     @ExceptionHandler(Exception.class)

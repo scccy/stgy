@@ -35,6 +35,7 @@ mybatis-plus:
     db-config:
       # id使用雪花算法生成： id字段的类型需要使用long类型
       id-type: assign_id
-
-
+logging:
+  level:
+    com.scccy.stgy.web.admin: debug
 

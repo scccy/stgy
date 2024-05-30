@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@RestControllerAdvice()
+//@RestControllerAdvice()
 public class ControllerExceptionHandler {
     // 处理缺少请求参数的异常
     @ExceptionHandler(MissingServletRequestParameterException.class)

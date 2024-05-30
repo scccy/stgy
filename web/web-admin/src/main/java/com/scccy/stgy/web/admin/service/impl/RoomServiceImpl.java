@@ -80,6 +80,7 @@ public class RoomServiceImpl implements RoomService {
         List<LabelInfo> labelInfos = labelInfoService.list(new LambdaQueryWrapper<LabelInfo>().eq(BaseModel::getId, id));
         List<PaymentType> paymentTypes = paymentTypeService.list(new LambdaQueryWrapper<PaymentType>().eq(BaseModel::getId,id));
         List<LeaseTerm> leaseTerms = leaseTermService.list(new LambdaQueryWrapper<LeaseTerm>().eq(BaseModel::getId,id));
+
         List<AttrValueVo> attrValueVos = roomAttrValueService.getAttrValueVos(id);
 
         RoomGetDetailByIdDto roomGetDetailByIdDto = new RoomGetDetailByIdDto();
@@ -91,6 +92,11 @@ public class RoomServiceImpl implements RoomService {
         roomGetDetailByIdDto.setAttrValueVoList(attrValueVos);
         
         return roomGetDetailByIdDto;
+    }
+
+    @Override
+    public boolean removeById(Integer id) {
+        return roomInfoService.removeById(id);
     }
 
 
