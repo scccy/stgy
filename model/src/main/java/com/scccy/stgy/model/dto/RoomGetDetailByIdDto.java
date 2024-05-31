@@ -1,7 +1,7 @@
 package com.scccy.stgy.model.dto;
 
 import com.scccy.stgy.model.domain.*;
-import com.scccy.stgy.model.vo.AttrValueVo;
+import com.scccy.stgy.model.vo.RoomAttrValueVo;
 import lombok.Data;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class RoomGetDetailByIdDto extends RoomInfo {
     private ApartmentInfo apartmentInfo;
     private List<FacilityInfo> facilityInfoList;
     private List<GraphInfo> graphVoList;
-    private List<AttrValueVo> attrValueVoList;
+    private List<RoomAttrValueVo> roomAttrValueVoList;
     private List<LabelInfo> labelInfoList;
     private List<PaymentType> paymentTypeList;
     private List<LeaseTerm> leaseTermList;

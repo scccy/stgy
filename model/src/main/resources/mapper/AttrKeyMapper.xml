@@ -144,4 +144,26 @@
       </if>
     </trim>
   </insert>
+
+  <resultMap id="AttrListVoMap" type="com.scccy.stgy.model.vo.AttrListVo" autoMapping="true">
+    <id property="id" column="ak_id" ></id>
+  <collection property="attrValueList" ofType="com.scccy.stgy.model.domain.AttrValue" autoMapping="true">
+    <id property="id" column="av_id"></id>
+    <result property="name" column="name"></result>
+    <result property="attrKeyId" column="attr_key_id"></result>
+  </collection>
+  </resultMap>
+
+  <select id="attrList" resultMap="AttrListVoMap">
+    select ak.id as ak_id,
+               ak.name,
+               av.id as av_id,
+               av.name,
+               av.attr_key_id
+        from attr_key ak
+               left join attr_value av on ak.id = av.attr_key_id and av.is_deleted = 0
+        where ak.is_deleted = 0
+  </select>
+
+
 </mapper>

@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scccy.stgy.common.pojo.ResultData;
 import com.scccy.stgy.model.domain.RoomInfo;
 import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
-import com.scccy.stgy.model.dto.RoomPageItemDto;
-import com.scccy.stgy.model.vo.SaveOrUpdateVo;
+import com.scccy.stgy.model.vo.RoomPageItemVo;
+import com.scccy.stgy.model.dto.RoomSaveOrUpdateDto;
 
 import com.scccy.stgy.web.admin.service.RoomService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,8 +34,8 @@ public class RoomController {
 
     @Operation(summary = "保存或更新房间信息")
     @PostMapping("/saveOrUpdate")
-    public ResultData saveOrUpdate(@RequestBody SaveOrUpdateVo saveOrUpdateVo){
-        boolean b = roomService.saveOrUpdate(saveOrUpdateVo);
+    public ResultData saveOrUpdate(@RequestBody RoomSaveOrUpdateDto roomSaveOrUpdateDto){
+        boolean b = roomService.saveOrUpdate(roomSaveOrUpdateDto);
         return b?ResultData.ok():ResultData.fail();
     }
 
@@ -52,8 +52,8 @@ public class RoomController {
 
         // 根据参数查询房间列表，并返回分页结果
         // 这里需要根据具体业务逻辑完成查询操作
-        IPage<RoomPageItemDto> roomPageItemDtoPage = new Page<>(current,size);
-        IPage<RoomPageItemDto> data = roomService.pageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
+        IPage<RoomPageItemVo> roomPageItemDtoPage = new Page<>(current,size);
+        IPage<RoomPageItemVo> data = roomService.pageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
         return ResultData.ok().setData(data); // 返回查询结果
     }
     @Operation(summary = "根据公寓id查询房间列表")

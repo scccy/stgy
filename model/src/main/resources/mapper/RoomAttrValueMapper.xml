@@ -164,7 +164,7 @@
   </insert>
 
 
-  <select id="getAttrValueVos" resultType="com.scccy.stgy.model.vo.AttrValueVo">
+  <select id="getAttrValueVos" resultType="com.scccy.stgy.model.vo.RoomAttrValueVo">
     select t1.room_id as id,
            t1.attr_value_id,
            t2.name,

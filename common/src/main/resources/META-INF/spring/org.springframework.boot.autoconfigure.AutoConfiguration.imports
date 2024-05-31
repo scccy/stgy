@@ -2,10 +2,10 @@
 # 写入class 类
 # 替换fastjson2
 com.scccy.stgy.common.config.MyBatisPlusConfig
-#com.scccy.config.RedisConfiguration
 com.scccy.stgy.common.config.WebMvcConfig
 com.scccy.stgy.common.config.MpMetaObjectHandler
 com.scccy.stgy.common.config.Knife4jConfiguration
+com.scccy.stgy.common.config.MinioConfig
 
 
 com.scccy.stgy.common.handlerExption.ControllerExceptionHandler

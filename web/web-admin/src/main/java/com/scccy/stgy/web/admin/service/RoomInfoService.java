@@ -5,7 +5,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.scccy.stgy.model.domain.RoomInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.scccy.stgy.model.dto.RoomPageItemDto;
+import com.scccy.stgy.model.vo.RoomPageItemVo;
 
 public interface RoomInfoService extends IService<RoomInfo>{
 
@@ -18,5 +18,5 @@ public interface RoomInfoService extends IService<RoomInfo>{
 
     int insertOrUpdateSelective(RoomInfo record);
 
-    IPage<RoomPageItemDto> getRoomPageItem(IPage<RoomPageItemDto> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId);
+    IPage<RoomPageItemVo> getRoomPageItem(IPage<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId);
 }

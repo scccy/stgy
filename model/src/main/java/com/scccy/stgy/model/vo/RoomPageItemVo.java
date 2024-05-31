@@ -1,4 +1,4 @@
-package com.scccy.stgy.model.dto;
+package com.scccy.stgy.model.vo;
 
 import com.scccy.stgy.model.domain.ApartmentInfo;
 import com.scccy.stgy.model.domain.RoomInfo;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class RoomPageItemDto extends RoomInfo {
+public class RoomPageItemVo extends RoomInfo {
     @Schema(description = "租约结束日期")
     private Date leaseEndDate;
 

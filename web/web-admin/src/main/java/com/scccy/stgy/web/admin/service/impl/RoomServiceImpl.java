@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.scccy.stgy.model.domain.*;
 import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
-import com.scccy.stgy.model.dto.RoomPageItemDto;
-import com.scccy.stgy.model.vo.AttrValueVo;
-import com.scccy.stgy.model.vo.SaveOrUpdateVo;
+import com.scccy.stgy.model.vo.RoomPageItemVo;
+import com.scccy.stgy.model.vo.RoomAttrValueVo;
+import com.scccy.stgy.model.dto.RoomSaveOrUpdateDto;
 import com.scccy.stgy.web.admin.service.*;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +43,13 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     @Transactional
-    public boolean saveOrUpdate(SaveOrUpdateVo saveOrUpdateVo) {
-        roomInfoService.saveOrUpdate(saveOrUpdateVo.toRoomInfo());
-        graphInfoService.saveOrUpdateBatch(saveOrUpdateVo.toGarphInfo());
-        roomPaymentTypeService.saveOrUpdateBatch(saveOrUpdateVo.toRoomPaymentType());
-        roomAttrValueService.saveOrUpdateBatch(saveOrUpdateVo.toRoomAttrValue());
-        roomFacilityService.saveOrUpdateBatch(saveOrUpdateVo.toRoomFacility());
-        roomLabelService.saveOrUpdateBatch(saveOrUpdateVo.toRoomLabel());
+    public boolean saveOrUpdate(RoomSaveOrUpdateDto roomSaveOrUpdateDto) {
+        roomInfoService.saveOrUpdate(roomSaveOrUpdateDto.toRoomInfo());
+        graphInfoService.saveOrUpdateBatch(roomSaveOrUpdateDto.toGarphInfo());
+        roomPaymentTypeService.saveOrUpdateBatch(roomSaveOrUpdateDto.toRoomPaymentType());
+        roomAttrValueService.saveOrUpdateBatch(roomSaveOrUpdateDto.toRoomAttrValue());
+        roomFacilityService.saveOrUpdateBatch(roomSaveOrUpdateDto.toRoomFacility());
+        roomLabelService.saveOrUpdateBatch(roomSaveOrUpdateDto.toRoomLabel());
         return true;
 
     }
@@ -62,7 +62,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public IPage<RoomPageItemDto> pageItem(IPage<RoomPageItemDto> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId) {
+    public IPage<RoomPageItemVo> pageItem(IPage<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId) {
         return roomInfoService.getRoomPageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
 
     }
@@ -81,7 +81,7 @@ public class RoomServiceImpl implements RoomService {
         List<PaymentType> paymentTypes = paymentTypeService.list(new LambdaQueryWrapper<PaymentType>().eq(BaseModel::getId,id));
         List<LeaseTerm> leaseTerms = leaseTermService.list(new LambdaQueryWrapper<LeaseTerm>().eq(BaseModel::getId,id));
 
-        List<AttrValueVo> attrValueVos = roomAttrValueService.getAttrValueVos(id);
+        List<RoomAttrValueVo> roomAttrValueVos = roomAttrValueService.getAttrValueVos(id);
 
         RoomGetDetailByIdDto roomGetDetailByIdDto = new RoomGetDetailByIdDto();
         roomGetDetailByIdDto.setGraphVoList(graphInfos);
@@ -89,7 +89,7 @@ public class RoomServiceImpl implements RoomService {
         roomGetDetailByIdDto.setLabelInfoList(labelInfos);
         roomGetDetailByIdDto.setPaymentTypeList(paymentTypes);
         roomGetDetailByIdDto.setLeaseTermList(leaseTerms);
-        roomGetDetailByIdDto.setAttrValueVoList(attrValueVos);
+        roomGetDetailByIdDto.setRoomAttrValueVoList(roomAttrValueVos);
         
         return roomGetDetailByIdDto;
     }

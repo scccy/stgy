@@ -5,7 +5,7 @@ import com.scccy.stgy.model.domain.RoomAttrValue;
 
 import java.util.List;
 
-import com.scccy.stgy.model.vo.AttrValueVo;
+import com.scccy.stgy.model.vo.RoomAttrValueVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface RoomAttrValueMapper extends BaseMapper<RoomAttrValue> {
@@ -17,5 +17,5 @@ public interface RoomAttrValueMapper extends BaseMapper<RoomAttrValue> {
 
     int insertOrUpdateSelective(RoomAttrValue record);
 
-    List<AttrValueVo> getAttrValueVos(Integer id);
+    List<RoomAttrValueVo> getAttrValueVos(Integer id);
 }

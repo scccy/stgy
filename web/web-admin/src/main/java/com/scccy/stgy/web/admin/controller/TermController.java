@@ -31,7 +31,7 @@ public class TermController {
     }
     @Operation(summary = "根据ID删除租期")
     @DeleteMapping("deleteById")
-    public ResultData deleteById(Integer id){
+    public ResultData deleteById(Long id){
         boolean b = leaseTermService.removeById(id);
         return b?ResultData.ok():ResultData.fail();
     }

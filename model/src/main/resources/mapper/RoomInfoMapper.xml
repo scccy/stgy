@@ -201,7 +201,7 @@
     </trim>
   </insert>
 
-  <resultMap autoMapping="true" id="getRoomPageItemMap" type="com.scccy.stgy.model.dto.RoomPageItemDto">
+  <resultMap autoMapping="true" id="getRoomPageItemMap" type="com.scccy.stgy.model.vo.RoomPageItemVo">
     <id column="id" property="id" />
     <association autoMapping="true" javaType="com.scccy.stgy.model.domain.ApartmentInfo" property="apartmentInfo">
       <id column="apart_id" property="id" />

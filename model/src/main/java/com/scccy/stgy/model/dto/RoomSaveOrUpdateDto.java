@@ -1,4 +1,4 @@
-package com.scccy.stgy.model.vo;
+package com.scccy.stgy.model.dto;
 
 import com.scccy.stgy.model.domain.*;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SaveOrUpdateVo {
+public class RoomSaveOrUpdateDto {
     private Long id;
     private String roomNumber;
     private double rent;

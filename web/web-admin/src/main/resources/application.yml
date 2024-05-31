@@ -5,6 +5,11 @@ server:
     context-path: /
 
 spring:
+#  上传文件限制
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 150MB
   application:
     name: stgy-admin
   datasource:
@@ -35,7 +40,11 @@ mybatis-plus:
     db-config:
       # id使用雪花算法生成： id字段的类型需要使用long类型
       id-type: assign_id
-logging:
-  level:
-    com.scccy.stgy.web.admin: debug
+
+minioSettings:
+  url: http://192.168.32.166
+  port: 11010
+  userName: minioadmin
+  password: minioadmin
+  bucketName: stgy
 

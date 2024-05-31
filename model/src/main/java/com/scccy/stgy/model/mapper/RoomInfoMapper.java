@@ -6,7 +6,7 @@ import com.scccy.stgy.model.domain.RoomInfo;
 
 import java.util.List;
 
-import com.scccy.stgy.model.dto.RoomPageItemDto;
+import com.scccy.stgy.model.vo.RoomPageItemVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface RoomInfoMapper extends BaseMapper<RoomInfo> {
@@ -18,5 +18,5 @@ public interface RoomInfoMapper extends BaseMapper<RoomInfo> {
 
     int insertOrUpdateSelective(RoomInfo record);
 
-    IPage<RoomPageItemDto> getRoomPageItem(IPage<RoomPageItemDto> roomPageItemDtoPage,  Long provinceId, Long cityId, Long districtId, Long apartmentId);
+    IPage<RoomPageItemVo> getRoomPageItem(IPage<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId);
 }
