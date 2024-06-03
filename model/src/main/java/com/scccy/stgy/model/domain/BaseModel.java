@@ -31,6 +31,6 @@ public class BaseModel {
     @TableLogic
     @JSONField(serialize = false)
     @TableField(value = "is_deleted")
-    private Byte deleted;
+    private Byte deleted = 0;
 
 }

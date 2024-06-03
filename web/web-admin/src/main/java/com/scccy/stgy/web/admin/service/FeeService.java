@@ -4,12 +4,14 @@ import com.scccy.stgy.model.domain.FeeKey;
 import com.scccy.stgy.model.domain.FeeValue;
 import com.scccy.stgy.model.vo.FeeListVo;
 
+import java.util.List;
+
 public interface FeeService {
     boolean valueSaveOrUpdate(FeeValue feeValue);
 
     boolean keySaveOrUpdate(FeeKey feeKey);
 
-    FeeListVo list(long id);
+    List<FeeListVo> list();
 
     boolean valueDeleteById(long id);
 

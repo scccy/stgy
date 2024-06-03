@@ -9,7 +9,7 @@ import java.util.List;
 public interface LabelService {
     boolean saveOrUpdate(LabelInfo labelInfo);
 
-    List<LabelInfo> list(Integer type);
+    List<LabelInfo> list( );
 
     boolean deleteById(Long id);
 }

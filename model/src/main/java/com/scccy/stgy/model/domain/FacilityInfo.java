@@ -41,4 +41,5 @@ public class FacilityInfo extends BaseModel implements Serializable {
     private String icon;
 
     private static final long serialVersionUID = 1L;
+
 }

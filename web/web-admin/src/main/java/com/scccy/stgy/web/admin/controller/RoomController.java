@@ -1,11 +1,10 @@
 package com.scccy.stgy.web.admin.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scccy.stgy.common.pojo.ResultData;
 import com.scccy.stgy.model.domain.RoomInfo;
-import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
+import com.scccy.stgy.model.dto.RoomGetDetailByIdVo;
 import com.scccy.stgy.model.vo.RoomPageItemVo;
 import com.scccy.stgy.model.dto.RoomSaveOrUpdateDto;
 
@@ -49,12 +48,9 @@ public class RoomController {
             @RequestParam(value = "cityId", required = false) Long cityId,
             @RequestParam(value = "districtId", required = false) Long districtId,
             @RequestParam(value = "apartmentId", required = false) Long apartmentId) {
-
-        // 根据参数查询房间列表，并返回分页结果
-        // 这里需要根据具体业务逻辑完成查询操作
-        IPage<RoomPageItemVo> roomPageItemDtoPage = new Page<>(current,size);
-        IPage<RoomPageItemVo> data = roomService.pageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
-        return ResultData.ok().setData(data); // 返回查询结果
+        Page<RoomPageItemVo> roomPageItemDtoPage = new Page<>(current,size);
+        Page<RoomPageItemVo> data = roomService.pageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
+        return ResultData.ok().setData(roomPageItemDtoPage); // 返回查询结果
     }
     @Operation(summary = "根据公寓id查询房间列表")
     @GetMapping("/listBasicByApartmentId")
@@ -64,8 +60,8 @@ public class RoomController {
     }
     @Operation(summary = "根据id获取房间详细信息")
     @GetMapping("/getDetailById")
-    public ResultData getDetailById(Integer id){
-        RoomGetDetailByIdDto roomDetailDto =roomService.getDetailById(id);
+    public ResultData getDetailById(Long id){
+        RoomGetDetailByIdVo roomDetailDto =roomService.getDetailById(id);
         return ResultData.ok().setData(roomDetailDto);
     }
 

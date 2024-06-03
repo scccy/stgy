@@ -50,7 +50,7 @@ public  class AttrController {
 
     @Operation(summary = "根据id删除属性名称")
     @DeleteMapping("/key/deleteById")
-    public ResultData keyDeleteById(long id) {
+    public ResultData keyDeleteById(@RequestParam("attrKeyId") long id) {
         boolean b = attrService.keyDeleteById(id);
         return b ? ResultData.ok() : ResultData.fail();
     }

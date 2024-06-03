@@ -26,8 +26,8 @@ public class LabelController {
 
     @Operation(summary = "查询标签列表")
     @GetMapping("/list")
-    public ResultData list(Integer type){
-        List<LabelInfo> labelInfos = labelService.list(type);
+    public ResultData list( ){
+        List<LabelInfo> labelInfos = labelService.list();
         return ResultData.ok().setData(labelInfos);
     }
 

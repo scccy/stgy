@@ -1,5 +1,6 @@
 package com.scccy.stgy.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.scccy.stgy.model.domain.FeeKey;
 import com.scccy.stgy.model.domain.FeeValue;
@@ -11,7 +12,9 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FeeServiceImpl implements FeeService {
@@ -19,6 +22,7 @@ public class FeeServiceImpl implements FeeService {
     FeeValueService feeValueService;
     @Resource
     FeeKeyService feeKeyService;
+
     @Override
     public boolean valueSaveOrUpdate(FeeValue feeValue) {
         return feeValueService.saveOrUpdate(feeValue);
@@ -30,13 +34,16 @@ public class FeeServiceImpl implements FeeService {
     }
 
     @Override
-    public FeeListVo list(long id) {
-        FeeKey feeKey = feeKeyService.getById(id);
-        FeeListVo feeListVo = new FeeListVo();
-        BeanUtils.copyProperties(feeKey,feeListVo);
-        List<FeeValue> feeValueList = feeValueService.list(new LambdaQueryWrapper<FeeValue>().eq(FeeValue::getFeeKeyId, feeKey.getId()));
-        feeListVo.setFeeValueList(feeValueList);
-        return feeListVo;
+    public List<FeeListVo> list() {
+        List<FeeKey> feeKeyList = feeKeyService.list();
+        List<FeeListVo> collect = feeKeyList.stream().map(feeKey -> {
+            FeeListVo feeListVo = new FeeListVo();
+            BeanUtils.copyProperties(feeKey, feeListVo);
+            List<FeeValue> feeValueList = feeValueService.list(new LambdaQueryWrapper<FeeValue>().eq(FeeValue::getFeeKeyId, feeKey.getId()));
+            feeListVo.setFeeValueList(feeValueList); // 将查询得到的 feeValueList 设置到 feeListVo 中
+            return feeListVo;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override

@@ -26,15 +26,15 @@ public class FacilityController {
 
     @Operation(summary = "查询配套信息列表")
     @GetMapping("/list")
-    public ResultData list(byte type) {
-        List<FacilityInfo> facilityInfos = facilityService.List(type);
+    public ResultData list( ) {
+        List<FacilityInfo> facilityInfos = facilityService.List();
         return ResultData.ok().setData(facilityInfos);
     }
 
     @Operation(summary = "根据id删除配套信息")
-    @DeleteMapping("/list")
-    public ResultData deleteById(byte type) {
-        boolean b = facilityService.deleteById(type);
+    @DeleteMapping("/deleteById")
+    public ResultData deleteById(long id) {
+        boolean b = facilityService.deleteById(id);
         return b ? ResultData.ok() : ResultData.fail();
     }
 

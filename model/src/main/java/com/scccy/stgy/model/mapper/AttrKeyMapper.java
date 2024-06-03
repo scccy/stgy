@@ -16,5 +16,6 @@ public interface AttrKeyMapper extends BaseMapper<AttrKey> {
 
     int insertOrUpdateSelective(AttrKey record);
 
+
     List<AttrListVo> attrList();
 }

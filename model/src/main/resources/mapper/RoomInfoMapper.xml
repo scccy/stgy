@@ -205,7 +205,7 @@
     <id column="id" property="id" />
     <association autoMapping="true" javaType="com.scccy.stgy.model.domain.ApartmentInfo" property="apartmentInfo">
       <id column="apart_id" property="id" />
-      <result column="apart_is_release" property="release" />
+      <result column="apart_is_release" property="isRelease" />
     </association>
   </resultMap>
   <select id="getRoomPageItem" resultMap="getRoomPageItemMap">
@@ -254,10 +254,122 @@
           </if>
       </where>
   </select>
-  <resultMap autoMapping="true" id="RoomGetDetailByIdDtoMap" type="com.scccy.stgy.model.dto.RoomGetDetailByIdDto">
 
+
+  <resultMap autoMapping="true" id="RoomGetDetailByIdDtoMap" type="com.scccy.stgy.model.dto.RoomGetDetailByIdVo">
+    <!-- 映射room_info表的字段 -->
+    <id column="room_id" property="id"/>
+    <result column="room_number" property="roomNumber"/>
+    <result column="rent" property="rent"/>
+
+    <!-- 映射apartment_info表的字段 -->
+    <association autoMapping="true" property="apartmentInfo" javaType="com.scccy.stgy.model.domain.ApartmentInfo">
+      <id column="apartment_id" property="id"/>
+      <result column="apartment_name" property="name"/>
+      <result column="introduction" property="introduction"/>
+      <!-- 其他字段的映射 -->
+    </association>
+
+    <!-- 映射graph_info表的字段 -->
+    <collection autoMapping="true" property="graphVoList" ofType="com.scccy.stgy.model.domain.GraphInfo">
+      <id column="id" property="id"/>
+      <result column="name" property="name"/>
+      <result column="url" property="url"/>
+      <!-- 其他字段的映射 -->
+    </collection>
+
+
+
+    <!-- 映射label_info表的字段 -->
+    <collection autoMapping="true" property="labelInfoList" ofType="com.scccy.stgy.model.domain.LabelInfo">
+      <id column="label_id" property="id"/>
+      <result column="label_type" property="type"/>
+      <result column="label_name" property="name"/>
+      <!-- 其他字段的映射 -->
+    </collection>
+
+    <!-- 映射payment_type表的字段 -->
+    <collection autoMapping="true"  property="paymentTypeList" ofType="com.scccy.stgy.model.domain.PaymentType">
+      <id column="payment_type_id" property="id"/>
+      <result column="payment_type_name" property="name"/>
+      <result column="payment_type_pay_month_count" property="payMonthCount"/>
+      <result column="payment_type_additional_info" property="additionalInfo"/>
+      <!-- 其他字段的映射 -->
+    </collection>
+
+    <!-- 映射lease_term表的字段 -->
+    <collection autoMapping="true" property="leaseTermList" ofType="com.scccy.stgy.model.domain.LeaseTerm">
+      <id column="lease_term_id" property="id"/>
+      <result column="lease_term_month_count" property="monthCount"/>
+      <result column="lease_term_unit" property="unit"/>
+      <!-- 其他字段的映射 -->
+    </collection>
   </resultMap>
-  <select id="getDetailById" resultMap="RoomGetDetailByIdDtoMap">
 
+
+  <select id="getDetailById" resultMap="RoomGetDetailByIdDtoMap">
+    SELECT ri.id              AS room_id,
+           ri.room_number,
+           ri.rent,
+           ai.id              AS apartment_id,
+           ai.name            AS apartment_name,
+           ai.introduction    AS introduction,
+           ai.district_id     AS district_id,
+           ai.district_name   AS district_name,
+           ai.city_id         AS city_id,
+           ai.city_name       AS city_name,
+           ai.province_id     AS province_id,
+           ai.province_name   AS province_name,
+           ai.address_detail  AS address_detail,
+           ai.latitude        AS latitude,
+           ai.longitude       AS longitude,
+           ai.phone           AS phone,
+           ai.is_release      AS is_release,
+           gi.id              AS id,
+           gi.name            AS name,
+           gi.url             AS url,
+           av.id              AS attribute_value_id,
+           av.name            AS attribute_value_name,
+           ak.id              AS attribute_key_id,
+           ak.name            AS attribute_key_name,
+           li.id              AS label_id,
+           li.type            AS label_type,
+           li.name            AS label_name,
+           pt.id              AS payment_type_id,
+           pt.name            AS payment_type_name,
+           pt.pay_month_count AS payment_type_pay_month_count,
+           pt.additional_info AS payment_type_additional_info,
+           lt.id              AS lease_term_id,
+           lt.month_count     AS lease_term_month_count,
+           lt.unit            AS lease_term_unit
+    FROM room_info ri
+           LEFT JOIN
+         apartment_info ai ON ri.apartment_id = ai.id AND ai.is_deleted = 0
+           LEFT JOIN
+         graph_info gi ON ri.id = gi.item_id AND gi.is_deleted = 0
+           LEFT JOIN
+         room_attr_value rav ON ri.id = rav.room_id AND rav.is_deleted = 0
+           LEFT JOIN
+         attr_value av ON rav.attr_value_id = av.id AND av.is_deleted = 0
+           LEFT JOIN
+         attr_key ak ON av.attr_key_id = ak.id AND ak.is_deleted = 0
+           LEFT JOIN
+         room_facility rf ON ri.id = rf.room_id AND rf.is_deleted = 0
+           LEFT JOIN
+         facility_info fi ON rf.facility_id = fi.id AND fi.is_deleted = 0
+           LEFT JOIN
+         room_label rl ON ri.id = rl.room_id AND rl.is_deleted = 0
+           LEFT JOIN
+         label_info li ON rl.label_id = li.id AND li.is_deleted = 0
+           LEFT JOIN
+         room_payment_type rpt ON ri.id = rpt.room_id AND rpt.is_deleted = 0
+           LEFT JOIN
+         payment_type pt ON rpt.payment_type_id = pt.id AND pt.is_deleted = 0
+           LEFT JOIN
+         room_lease_term rlt ON rlt.room_id = ri.id
+           LEFT JOIN
+         lease_term lt ON rlt.lease_term_id = lt.id AND lease_term_id = 0
+    WHERE ri.is_deleted = 0
+      AND ri.id = #{id}
   </select>
 </mapper>

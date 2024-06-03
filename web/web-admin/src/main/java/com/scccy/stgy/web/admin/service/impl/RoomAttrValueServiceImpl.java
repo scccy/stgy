@@ -1,14 +1,14 @@
 package com.scccy.stgy.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.scccy.stgy.model.domain.RoomAttrValue;
+import com.scccy.stgy.model.mapper.RoomAttrValueMapper;
 import com.scccy.stgy.model.vo.RoomAttrValueVo;
+import com.scccy.stgy.web.admin.service.RoomAttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.scccy.stgy.model.mapper.RoomAttrValueMapper;
-import com.scccy.stgy.model.domain.RoomAttrValue;
-import com.scccy.stgy.web.admin.service.RoomAttrValueService;
 @Service
 public class RoomAttrValueServiceImpl extends ServiceImpl<RoomAttrValueMapper, RoomAttrValue> implements RoomAttrValueService{
     @Autowired
@@ -32,7 +32,7 @@ public class RoomAttrValueServiceImpl extends ServiceImpl<RoomAttrValueMapper, R
     }
 
     @Override
-    public List<RoomAttrValueVo> getAttrValueVos(Integer id) {
+    public List<RoomAttrValueVo> getAttrValueVos(Long id) {
        return roomAttrValueMapper.getAttrValueVos(id);
     }
 }

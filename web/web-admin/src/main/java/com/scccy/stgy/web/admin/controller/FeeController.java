@@ -6,9 +6,12 @@ import com.scccy.stgy.model.domain.FeeValue;
 import com.scccy.stgy.model.vo.FeeListVo;
 import com.scccy.stgy.web.admin.service.FeeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "房间杂费管理")
 @RestController
@@ -32,8 +35,8 @@ public class FeeController {
     }
     @Operation(summary = "查询全部杂费名称和杂费值列表")
     @GetMapping("/list")
-    public ResultData list(long id) {
-        FeeListVo data = feeService.list(id);
+    public ResultData list() {
+        List<FeeListVo> data = feeService.list();
         return  ResultData.ok().setData(data) ;
     }
 
@@ -45,8 +48,8 @@ public class FeeController {
     }
 
     @Operation(summary = "根据id删除杂费名称")
-    @GetMapping("/key/deleteById")
-    public ResultData keyDeleteById(long id) {
+    @DeleteMapping("/key/deleteById")
+    public ResultData keyDeleteById(@RequestParam("feeKeyId")   long id) {
         boolean b = feeService.keyDeleteById(id);
         return b ? ResultData.ok() : ResultData.fail();
     }

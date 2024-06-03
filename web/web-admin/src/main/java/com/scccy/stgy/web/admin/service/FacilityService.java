@@ -7,7 +7,7 @@ import java.util.List;
 public interface FacilityService {
     boolean saveOrUpdate(FacilityInfo facilityInfo);
 
-    List<FacilityInfo> List(byte type);
+    List<FacilityInfo> List( );
 
-    boolean deleteById(byte type);
+    boolean deleteById(long id);
 }

@@ -8,20 +8,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="web-app" />
+        <module name="web-admin (1) (com.atguigu)" />
         <module name="common" />
+        <module name="model (1) (com.atguigu)" />
         <module name="model" />
+        <module name="common (1) (com.atguigu)" />
+        <module name="web-app (1) (com.atguigu)" />
         <module name="web-admin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="common (1) (com.atguigu)" target="17" />
-      <module name="model (1) (com.atguigu)" target="17" />
       <module name="scccy-baseConfig" target="17" />
       <module name="scccy-config" target="17" />
-      <module name="stgy (1) (com.atguigu)" target="17" />
-      <module name="web (1) (com.atguigu)" target="17" />
-      <module name="web-admin (1) (com.atguigu)" target="17" />
-      <module name="web-app (1) (com.atguigu)" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -13,19 +13,19 @@ import java.util.List;
 public class FacilityServiceImpl implements FacilityService {
     @Resource
     FacilityInfoService facilityInfoService;
+
     @Override
     public boolean saveOrUpdate(FacilityInfo facilityInfo) {
         return facilityInfoService.saveOrUpdate(facilityInfo);
     }
 
     @Override
-    public List<FacilityInfo> List(byte type) {
-        return facilityInfoService.list(new LambdaQueryWrapper<FacilityInfo>().eq(FacilityInfo::getType, type));
-
+    public List<FacilityInfo> List() {
+        return facilityInfoService.list();
     }
 
     @Override
-    public boolean deleteById(byte type) {
-        return facilityInfoService.remove(new LambdaQueryWrapper<FacilityInfo>().eq(FacilityInfo::getType,type));
+    public boolean deleteById(long id) {
+        return facilityInfoService.remove(new LambdaQueryWrapper<FacilityInfo>().eq(FacilityInfo::getId, id));
     }
 }

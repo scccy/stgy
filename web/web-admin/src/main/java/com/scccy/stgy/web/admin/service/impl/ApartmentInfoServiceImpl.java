@@ -1,5 +1,8 @@
 package com.scccy.stgy.web.admin.service.impl;
 
+import com.scccy.stgy.model.dto.ApartmentPageItemDto;
+import com.scccy.stgy.model.vo.ApartmentPageItemVo;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +14,8 @@ import com.scccy.stgy.web.admin.service.ApartmentInfoService;
 @Service
 public class ApartmentInfoServiceImpl extends ServiceImpl<ApartmentInfoMapper, ApartmentInfo> implements ApartmentInfoService{
 
+    @Resource
+    ApartmentInfoMapper apartmentInfoMapper;
     @Override
     public int updateBatch(List<ApartmentInfo> list) {
         return baseMapper.updateBatch(list);
@@ -26,5 +31,10 @@ public class ApartmentInfoServiceImpl extends ServiceImpl<ApartmentInfoMapper, A
     @Override
     public int insertOrUpdateSelective(ApartmentInfo record) {
         return baseMapper.insertOrUpdateSelective(record);
+    }
+
+    @Override
+    public List<ApartmentPageItemVo> pageItem(ApartmentPageItemDto apartmentPageItemDto) {
+        return apartmentInfoMapper.pageItem(apartmentPageItemDto);
     }
 }

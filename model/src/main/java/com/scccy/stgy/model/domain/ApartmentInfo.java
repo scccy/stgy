@@ -1,12 +1,10 @@
 package com.scccy.stgy.model.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -111,7 +109,7 @@ public class ApartmentInfo extends BaseModel implements Serializable {
      */
     @TableField(value = "is_release")
     @Schema(description = "是否发布（1:发布，0:未发布）")
-    private Byte release;
+    private Byte isRelease;
 
     private static final long serialVersionUID = 1L;
 }

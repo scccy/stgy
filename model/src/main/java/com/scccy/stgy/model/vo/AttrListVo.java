@@ -7,6 +7,6 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AttrListVo extends AttrKey {
-    private List<AttrValue> attrValueList;
+public class AttrListVo extends AttrValue {
+    private List<AttrValue> AttrValueList;
 }

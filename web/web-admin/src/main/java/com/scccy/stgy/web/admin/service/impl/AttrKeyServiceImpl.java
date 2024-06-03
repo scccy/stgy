@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.scccy.stgy.model.domain.AttrKey;
 import com.scccy.stgy.model.mapper.AttrKeyMapper;
 import com.scccy.stgy.model.vo.AttrListVo;
+
 import com.scccy.stgy.web.admin.service.AttrKeyService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -35,4 +36,8 @@ public class AttrKeyServiceImpl extends ServiceImpl<AttrKeyMapper, AttrKey> impl
     public List<AttrListVo> attrList() {
         return attrKeyMapper.attrList();
     }
+
+
+
+
 }

@@ -163,12 +163,20 @@
     </trim>
   </insert>
 
+  <resultMap id="getAttrValueVosMap" type="com.scccy.stgy.model.vo.AttrListVo">
+    <id property="id" column="attr_key_id" ></id>
+    <result property="name" column="attr_key_name"></result>
+    <collection property="attrValueList" ofType="com.scccy.stgy.model.domain.AttrKey">
+      <id property="id" column="av_id"></id>
+      <result property="name" column="av_name"></result>
+    </collection>
+  </resultMap>
 
   <select id="getAttrValueVos" resultType="com.scccy.stgy.model.vo.RoomAttrValueVo">
-    select t1.room_id as id,
-           t1.attr_value_id,
-           t2.name,
-           t2.attr_key_id,
+    select 
+           t1.attr_value_id as id,
+           t2.name as name,
+           t2.attr_key_id as attr_key_id,
            t3.name    as attr_key_name
     from room_attr_value t1
            left join attr_value t2 on t1.attr_value_id = t2.id and t2.is_deleted = 0

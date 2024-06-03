@@ -2,19 +2,22 @@ package com.scccy.stgy.web.admin.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scccy.stgy.model.domain.*;
-import com.scccy.stgy.model.dto.RoomGetDetailByIdDto;
-import com.scccy.stgy.model.vo.RoomPageItemVo;
-import com.scccy.stgy.model.vo.RoomAttrValueVo;
+import com.scccy.stgy.model.dto.RoomGetDetailByIdVo;
 import com.scccy.stgy.model.dto.RoomSaveOrUpdateDto;
+import com.scccy.stgy.model.vo.RoomAttrValueVo;
+import com.scccy.stgy.model.vo.RoomPageItemVo;
 import com.scccy.stgy.web.admin.service.*;
 import jakarta.annotation.Resource;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -34,15 +37,19 @@ public class RoomServiceImpl implements RoomService {
     @Resource
     RoomLabelService roomLabelService;
     @Resource
+    AttrKeyService attrKeyService;
+    @Resource
     FacilityInfoService facilityInfoService;
     @Resource
     LabelInfoService labelInfoService;
     @Resource
     LeaseTermService leaseTermService;
+    @Resource
+    ApartmentInfoService apartmentInfoService;
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean saveOrUpdate(RoomSaveOrUpdateDto roomSaveOrUpdateDto) {
         roomInfoService.saveOrUpdate(roomSaveOrUpdateDto.toRoomInfo());
         graphInfoService.saveOrUpdateBatch(roomSaveOrUpdateDto.toGarphInfo());
@@ -51,7 +58,6 @@ public class RoomServiceImpl implements RoomService {
         roomFacilityService.saveOrUpdateBatch(roomSaveOrUpdateDto.toRoomFacility());
         roomLabelService.saveOrUpdateBatch(roomSaveOrUpdateDto.toRoomLabel());
         return true;
-
     }
 
 
@@ -62,37 +68,56 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public IPage<RoomPageItemVo> pageItem(IPage<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId) {
+    public Page<RoomPageItemVo> pageItem(Page<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId) {
         return roomInfoService.getRoomPageItem(roomPageItemDtoPage, provinceId, cityId, districtId, apartmentId);
 
     }
 
     @Override
     public List<RoomInfo> listBasicByApartmentId(Integer id) {
+
         return roomInfoService.list(new LambdaQueryWrapper<RoomInfo>().eq(BaseModel::getId, id));
     }
 
+//    todo:不能直接赋值查询
     @Override
-    public RoomGetDetailByIdDto getDetailById(Integer id) {
+    public RoomGetDetailByIdVo getDetailById(Long id) {
 
-        List<GraphInfo> graphInfos = graphInfoService.list(new LambdaQueryWrapper<GraphInfo>().eq(BaseModel::getId, id));
-        List<FacilityInfo> facilityInfos = facilityInfoService.list(new LambdaQueryWrapper<FacilityInfo>().eq(BaseModel::getId, id));
-        List<LabelInfo> labelInfos = labelInfoService.list(new LambdaQueryWrapper<LabelInfo>().eq(BaseModel::getId, id));
-        List<PaymentType> paymentTypes = paymentTypeService.list(new LambdaQueryWrapper<PaymentType>().eq(BaseModel::getId,id));
-        List<LeaseTerm> leaseTerms = leaseTermService.list(new LambdaQueryWrapper<LeaseTerm>().eq(BaseModel::getId,id));
+//        RoomGetDetailByIdVo roomGetDetailByIdVo = roomInfoService.getDetailById(id);
+        RoomInfo roomInfo = roomInfoService.getOne(Wrappers.lambdaQuery(RoomInfo.class).eq(RoomInfo::getId,id));
+        RoomGetDetailByIdVo roomGetDetailByIdVo = new RoomGetDetailByIdVo();
+        BeanUtils.copyProperties(roomInfo,roomGetDetailByIdVo);
 
-        List<RoomAttrValueVo> roomAttrValueVos = roomAttrValueService.getAttrValueVos(id);
+        List<GraphInfo> graphInfos = graphInfoService.list(Wrappers.lambdaQuery(GraphInfo.class).eq(GraphInfo::getItemId, roomInfo.getId()));
+        roomGetDetailByIdVo.setGraphVoList(graphInfos);
 
-        RoomGetDetailByIdDto roomGetDetailByIdDto = new RoomGetDetailByIdDto();
-        roomGetDetailByIdDto.setGraphVoList(graphInfos);
-        roomGetDetailByIdDto.setFacilityInfoList(facilityInfos);
-        roomGetDetailByIdDto.setLabelInfoList(labelInfos);
-        roomGetDetailByIdDto.setPaymentTypeList(paymentTypes);
-        roomGetDetailByIdDto.setLeaseTermList(leaseTerms);
-        roomGetDetailByIdDto.setRoomAttrValueVoList(roomAttrValueVos);
-        
-        return roomGetDetailByIdDto;
+        List<RoomAttrValueVo> roomAttrValueVos = roomAttrValueService.getAttrValueVos(roomInfo.getId());
+        roomGetDetailByIdVo.setAttrValueVoList(roomAttrValueVos);
+
+        List<FacilityInfo> facilityInfos = roomFacilityService.list(Wrappers.lambdaQuery(RoomFacility.class).eq(RoomFacility::getRoomId, roomInfo.getId())).stream()
+                .map(roomFacility -> facilityInfoService.getOne(Wrappers.lambdaQuery(FacilityInfo.class).eq(BaseModel::getId, roomFacility.getFacilityId()).eq(BaseModel::getDeleted,0)))
+                .collect(Collectors.toList());
+        roomGetDetailByIdVo.setFacilityInfoList(facilityInfos);
+
+
+        List<LabelInfo> labelInfos = roomLabelService.list(Wrappers.lambdaQuery(RoomLabel.class).eq(RoomLabel::getRoomId, roomInfo.getId())).stream().map(
+                roomLabel -> labelInfoService.getOne(Wrappers.lambdaQuery(LabelInfo.class).eq(BaseModel::getId, roomLabel.getLabelId()))
+        ).collect(Collectors.toList());
+        roomGetDetailByIdVo.setLabelInfoList(labelInfos);
+
+
+        List<PaymentType> paymentTypes = roomPaymentTypeService.list(Wrappers.lambdaQuery(RoomPaymentType.class).eq(RoomPaymentType::getRoomId, roomInfo.getId())).stream().map(
+                roomPaymentType -> paymentTypeService.getOne(Wrappers.lambdaQuery(PaymentType.class).eq(BaseModel::getId, roomPaymentType.getPaymentTypeId()))
+
+        ).collect(Collectors.toList());
+        roomGetDetailByIdVo.setPaymentTypeList(paymentTypes);
+        return roomGetDetailByIdVo;
+
     }
+
+
+
+
 
     @Override
     public boolean removeById(Integer id) {

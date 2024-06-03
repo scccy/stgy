@@ -17,7 +17,7 @@
     <result column="latitude" jdbcType="VARCHAR" property="latitude" />
     <result column="longitude" jdbcType="VARCHAR" property="longitude" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="is_release" jdbcType="TINYINT" property="release" />
+    <result column="is_release" jdbcType="TINYINT" property="isRelease" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="is_deleted" jdbcType="TINYINT" property="deleted" />
@@ -94,7 +94,7 @@
       </trim>
       <trim prefix="is_release = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.release,jdbcType=TINYINT}
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isRelease,jdbcType=TINYINT}
         </foreach>
       </trim>
       <trim prefix="create_time = case" suffix="end,">
@@ -126,11 +126,13 @@
       update_time, is_deleted)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.name,jdbcType=VARCHAR}, #{item.introduction,jdbcType=VARCHAR}, #{item.districtId,jdbcType=BIGINT}, 
-        #{item.districtName,jdbcType=VARCHAR}, #{item.cityId,jdbcType=BIGINT}, #{item.cityName,jdbcType=VARCHAR}, 
-        #{item.provinceId,jdbcType=BIGINT}, #{item.provinceName,jdbcType=VARCHAR}, #{item.addressDetail,jdbcType=VARCHAR}, 
-        #{item.latitude,jdbcType=VARCHAR}, #{item.longitude,jdbcType=VARCHAR}, #{item.phone,jdbcType=VARCHAR}, 
-        #{item.release,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        (#{item.name,jdbcType=VARCHAR}, #{item.introduction,jdbcType=VARCHAR}, #{item.districtId,jdbcType=BIGINT},
+        #{item.districtName,jdbcType=VARCHAR}, #{item.cityId,jdbcType=BIGINT}, #{item.cityName,jdbcType=VARCHAR},
+        #{item.provinceId,jdbcType=BIGINT}, #{item.provinceName,jdbcType=VARCHAR},
+        #{item.addressDetail,jdbcType=VARCHAR},
+        #{item.latitude,jdbcType=VARCHAR}, #{item.longitude,jdbcType=VARCHAR}, #{item.phone,jdbcType=VARCHAR},
+        #{item.isRelease,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateTime,jdbcType=TIMESTAMP},
         #{item.deleted,jdbcType=TINYINT})
     </foreach>
   </insert>
@@ -163,44 +165,44 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      #{name,jdbcType=VARCHAR},
-      #{introduction,jdbcType=VARCHAR},
-      #{districtId,jdbcType=BIGINT},
-      #{districtName,jdbcType=VARCHAR},
-      #{cityId,jdbcType=BIGINT},
-      #{cityName,jdbcType=VARCHAR},
-      #{provinceId,jdbcType=BIGINT},
-      #{provinceName,jdbcType=VARCHAR},
-      #{addressDetail,jdbcType=VARCHAR},
-      #{latitude,jdbcType=VARCHAR},
-      #{longitude,jdbcType=VARCHAR},
-      #{phone,jdbcType=VARCHAR},
-      #{release,jdbcType=TINYINT},
-      #{createTime,jdbcType=TIMESTAMP},
-      #{updateTime,jdbcType=TIMESTAMP},
-      #{deleted,jdbcType=TINYINT},
+        #{name,jdbcType=VARCHAR},
+        #{introduction,jdbcType=VARCHAR},
+        #{districtId,jdbcType=BIGINT},
+        #{districtName,jdbcType=VARCHAR},
+        #{cityId,jdbcType=BIGINT},
+        #{cityName,jdbcType=VARCHAR},
+        #{provinceId,jdbcType=BIGINT},
+        #{provinceName,jdbcType=VARCHAR},
+        #{addressDetail,jdbcType=VARCHAR},
+        #{latitude,jdbcType=VARCHAR},
+        #{longitude,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR},
+        #{isRelease,jdbcType=TINYINT},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{deleted,jdbcType=TINYINT},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
       <if test="id != null">
         id = #{id,jdbcType=BIGINT},
       </if>
-      `name` = #{name,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR},
-      district_id = #{districtId,jdbcType=BIGINT},
-      district_name = #{districtName,jdbcType=VARCHAR},
-      city_id = #{cityId,jdbcType=BIGINT},
-      city_name = #{cityName,jdbcType=VARCHAR},
-      province_id = #{provinceId,jdbcType=BIGINT},
-      province_name = #{provinceName,jdbcType=VARCHAR},
-      address_detail = #{addressDetail,jdbcType=VARCHAR},
-      latitude = #{latitude,jdbcType=VARCHAR},
-      longitude = #{longitude,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      is_release = #{release,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      is_deleted = #{deleted,jdbcType=TINYINT},
+        `name` = #{name,jdbcType=VARCHAR},
+        introduction = #{introduction,jdbcType=VARCHAR},
+        district_id = #{districtId,jdbcType=BIGINT},
+        district_name = #{districtName,jdbcType=VARCHAR},
+        city_id = #{cityId,jdbcType=BIGINT},
+        city_name = #{cityName,jdbcType=VARCHAR},
+        province_id = #{provinceId,jdbcType=BIGINT},
+        province_name = #{provinceName,jdbcType=VARCHAR},
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+        latitude = #{latitude,jdbcType=VARCHAR},
+        longitude = #{longitude,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        is_release = #{isRelease,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        is_deleted = #{deleted,jdbcType=TINYINT},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.scccy.stgy.model.domain.ApartmentInfo" useGeneratedKeys="true">
@@ -246,7 +248,7 @@
       <if test="phone != null">
         phone,
       </if>
-      <if test="release != null">
+      <if test="isRelease != null">
         is_release,
       </if>
       <if test="createTime != null">
@@ -300,8 +302,8 @@
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="release != null">
-        #{release,jdbcType=TINYINT},
+      <if test="isRelease != null">
+          #{isRelease,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -354,8 +356,8 @@
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="release != null">
-        is_release = #{release,jdbcType=TINYINT},
+      <if test="isRelease != null">
+          is_release = #{isRelease,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -368,4 +370,44 @@
       </if>
     </trim>
   </insert>
+
+  <select id="pageItem" resultType="com.scccy.stgy.model.vo.ApartmentPageItemVo">
+    select ai.id,
+           ai.name,
+           ai.introduction,
+           ai.district_id,
+           ai.district_name,
+           ai.city_id,
+           ai.city_name,
+           ai.province_id,
+           ai.province_name,
+           ai.address_detail,
+           ai.latitude,
+           ai.longitude,
+           ai.phone,
+           ai.is_release,
+           ai.create_time,
+           ai.update_time,
+           ai.is_deleted,
+           count(ri.id) as totalRoomCount,
+           SUM(IF(la.status NOT IN (1, 2), 0, 1)) as freeRoomCount
+    from apartment_info ai
+           left join room_info ri on ri.apartment_id = ai.id and ri.is_deleted = 0
+           left join lease_agreement la on la.apartment_id = ai.id and la.is_deleted = 0 and la.room_id = ri.id
+      <where>
+        ai.is_deleted = 0
+        <if test="apartmentPageItemDto.cityId != null and apartmentPageItemDto.cityId != ''">
+          AND ai.city_id = #{apartmentPageItemDto.cityId}
+        </if>
+        <if test="apartmentPageItemDto.provinceId != null and apartmentPageItemDto.provinceId != ''">
+          AND ai.province_id = #{apartmentPageItemDto.provinceId}
+        </if>
+        <if test="apartmentPageItemDto.districtId != null and apartmentPageItemDto.provinceId != ''">
+          AND ai.district_id = #{apartmentPageItemDto.districtId}
+        </if>
+      </where>
+    group by ai.id, ai.name, ai.introduction, ai.district_id, ai.district_name, ai.city_id, ai.city_name, ai.province_id,
+             ai.province_name, ai.address_detail, ai.latitude, ai.longitude, ai.phone, ai.is_release, ai.create_time,
+             ai.update_time, ai.is_deleted
+  </select>
 </mapper>

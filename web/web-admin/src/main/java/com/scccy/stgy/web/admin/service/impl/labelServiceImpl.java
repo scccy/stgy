@@ -14,15 +14,16 @@ import java.util.List;
 public class labelServiceImpl implements LabelService {
     @Resource
     LabelInfoService labelInfoService;
+
     @Override
     public boolean saveOrUpdate(LabelInfo labelInfo) {
-        return  labelInfoService.saveOrUpdate(labelInfo);
+        return labelInfoService.saveOrUpdate(labelInfo);
 
     }
 
     @Override
-    public List<LabelInfo> list(Integer type) {
-        return labelInfoService.list(new LambdaQueryWrapper<LabelInfo>().eq(LabelInfo::getType,type));
+    public List<LabelInfo> list() {
+        return labelInfoService.list();
     }
 
     @Override

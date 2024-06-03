@@ -1,6 +1,8 @@
 package com.scccy.stgy.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.scccy.stgy.model.dto.RoomGetDetailByIdVo;
 import com.scccy.stgy.model.vo.RoomPageItemVo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -33,7 +35,12 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo> i
     }
 
     @Override
-    public IPage<RoomPageItemVo> getRoomPageItem(IPage<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId) {
-        return roomInfoMapper.getRoomPageItem(roomPageItemDtoPage,   provinceId,  cityId,  districtId,  apartmentId);
+    public Page<RoomPageItemVo> getRoomPageItem(Page<RoomPageItemVo> roomPageItemDtoPage, Long provinceId, Long cityId, Long districtId, Long apartmentId) {
+        return roomInfoMapper.getRoomPageItem( roomPageItemDtoPage, provinceId,  cityId,  districtId,  apartmentId);
+    }
+
+    @Override
+    public RoomGetDetailByIdVo getDetailById(Long id) {
+        return roomInfoMapper.getDetailById(id);
     }
 }
