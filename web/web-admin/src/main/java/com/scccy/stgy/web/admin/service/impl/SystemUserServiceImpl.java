@@ -1,5 +1,6 @@
 package com.scccy.stgy.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +27,10 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
     @Override
     public int insertOrUpdateSelective(SystemUser record) {
         return baseMapper.insertOrUpdateSelective(record);
+    }
+
+    @Override
+    public void updateStatusById(Integer id, String status) {
+
     }
 }

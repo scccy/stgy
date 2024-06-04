@@ -6,6 +6,8 @@ com.scccy.stgy.common.config.WebMvcConfig
 com.scccy.stgy.common.config.MpMetaObjectHandler
 com.scccy.stgy.common.config.Knife4jConfiguration
 com.scccy.stgy.common.config.MinioConfig
+com.scccy.stgy.common.config.RedisConfiguration
+com.scccy.stgy.common.config.JwtProperties
 
 
 com.scccy.stgy.common.handlerExption.ControllerExceptionHandler

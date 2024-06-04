@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="60">
     <Properties>
-        <Property name="App">downLoadVideo</Property>
-        <Property name="logDir">/home/project/DownLoadVideo/service-logs</Property>
+        <Property name="project">stgy</Property>
+        <Property name="App">admin</Property>
+        <Property name="logDir">/home/logs</Property>
         <Property name="splitSize">100 MB</Property>
     </Properties>
 
@@ -14,8 +15,8 @@
         </Console>
 
         <!-- 打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="infoLog" fileName="/home/logs/stgy/stgy-admin-info.log"
-                     filePattern="/home/logs/stgy/stgy-admin-info-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="infoLog" fileName="${logDir}/${project}/${App}/info.log"
+                     filePattern="${logDir}/${project}/${App}/info-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS z} [%thread] %-5level %logger{36} %L %M - %msg%xEx%n"/>
 
             <Policies>
@@ -33,8 +34,8 @@
         </RollingFile>
 
         <!-- 存储所有error信息 -->
-        <RollingFile name="errorLog" fileName="/home/logs/stgy/stgy-admin-error.log"
-                     filePattern="/home/logs/stgy/stgy-admin-error-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="errorLog" fileName="${logDir}/${project}/${App}/error.log"
+                     filePattern="${logDir}/${project}/${App}/error-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS z} [%thread] %-5level %logger{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <!-- 每15天滚动一次 -->
@@ -51,8 +52,8 @@
         </RollingFile>
 
         <!-- 单独的 MyBatis-Plus 日志文件 -->
-        <RollingFile name="mybatisPlusLog" fileName="/home/logs/stgy/stgy-admin-mybatisPlus.log"
-                     filePattern="/home/logs/stgy/stgy-admin-mybatisPlus-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="mybatisPlusLog" fileName="${logDir}/${project}/${App}/mybatisPlus.log"
+                     filePattern="${logDir}/${project}/${App}/mybatisPlus-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS z} [%thread] %-5level %logger{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <!-- 每15天滚动一次 -->

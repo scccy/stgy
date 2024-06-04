@@ -1,16 +1,15 @@
 package com.scccy.stgy.model.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 员工信息表
@@ -32,7 +31,7 @@ public class SystemUser extends BaseModel implements Serializable {
     /**
      * 密码
      */
-    @TableField(value = "`password`")
+    @TableField(value = "`password`", updateStrategy = FieldStrategy.NOT_EMPTY)
     @Schema(description = "密码")
     private String password;
 
@@ -84,6 +83,8 @@ public class SystemUser extends BaseModel implements Serializable {
     @TableField(value = "`status`")
     @Schema(description = "账号状态")
     private Byte status;
+    @TableField(value = "`salt`",updateStrategy = FieldStrategy.NOT_EMPTY)
+    private String salt;
 
     private static final long serialVersionUID = 1L;
 }

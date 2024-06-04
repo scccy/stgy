@@ -47,4 +47,14 @@ minioSettings:
   userName: minioadmin
   password: minioadmin
   bucketName: stgy
-
+scccy:
+  redis:
+    host: 192.168.32.166
+    port: 11020
+    password: asdsc88Q12
+  jwt:
+    alg: "HS256"
+    typ: "JWT"
+    expire: 604_800_000
+    subject: "systemuser-token"
+    key: "abcd12345dfverwuio9873rdqr32rdsaawetr43qrcsadt43qrdfds"

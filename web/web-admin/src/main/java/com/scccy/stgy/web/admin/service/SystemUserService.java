@@ -14,4 +14,5 @@ public interface SystemUserService extends IService<SystemUser>{
 
     int insertOrUpdateSelective(SystemUser record);
 
+    void updateStatusById(Integer id, String status);
 }

@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 //@ConditionalOnClass(MybatisConfiguration.class)
+@EnableTransactionManagement //启用声明式事务
 public class MyBatisPlusConfig {
     /**
      * 添加分页插件
@@ -22,6 +24,7 @@ public class MyBatisPlusConfig {
         System.out.println("分页插件加载成功");
         return interceptor;
     }
+
 
 }
 
